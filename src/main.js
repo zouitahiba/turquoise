@@ -203,17 +203,28 @@ $('#lang').addEventListener('click', (e) => {
 });
 
 /* ================= Apparitions ================= */
+// On déclenche les apparitions par panneau, AVANT qu'il n'entre à l'écran,
+// pour que le titre et le contenu soient déjà visibles pendant le glissement.
+function revealPanel(panel) {
+  panel.dataset.in = '1';
+  const isHero = panel.classList.contains('hero');
+  panel.querySelectorAll('.reveal:not(.in)').forEach((el, i) => {
+    if (!isHero && !el.style.transitionDelay) el.style.transitionDelay = `${Math.min(i * 0.06, 0.36)}s`;
+    el.classList.add('in');
+  });
+}
 const io = new IntersectionObserver(
   (entries) =>
     entries.forEach((e) => {
       if (e.isIntersecting) {
-        e.target.classList.add('in');
+        revealPanel(e.target);
         io.unobserve(e.target);
       }
     }),
-  { threshold: 0.2 }
+  { threshold: 0, rootMargin: '0px 0px 35% 0px' }
 );
-const observe = () => $$('.reveal:not(.in)').forEach((el) => io.observe(el));
+const observe = () =>
+  $$('.panel').forEach((p) => (p.dataset.in ? revealPanel(p) : io.observe(p)));
 
 /* ================= Panneaux empilés ================= */
 const panels = $$('.panel');
@@ -249,7 +260,11 @@ function onScroll() {
     panels.forEach((p, i) => {
       const next = panels[i + 1];
       const prog = next ? Math.min(1, Math.max(0, 1 - next.getBoundingClientRect().top / vh)) : 0;
-      p.style.setProperty('--cover', prog.toFixed(3));
+      const v = prog.toFixed(2);
+      if (p._cover !== v) {
+        p._cover = v;
+        p.style.setProperty('--cover', v);
+      }
     });
     const end = vh + window.scrollY >= document.documentElement.scrollHeight - 40;
     $('#chevron').classList.toggle('hide', end);
