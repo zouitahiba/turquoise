@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#2a9a91" />
+    <title>Alma & Aziz — Écrin turquoise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="defs"></div>
+    <button class="top-btn lang" id="lang" type="button">FR</button>
+    <button class="top-btn sound" id="sound" type="button" aria-label="Son"></button>
+
+    <!-- ================= ÉCRIN ================= -->
+    <div class="stage" id="stage">
+      <div class="silk"></div>
+      <div class="light-rays"></div>
+      <div class="scene" id="scene">
+        <div class="case" id="case">
+          <div class="case-base">
+            <canvas id="quilt"></canvas>
+            <div class="flower-wrap"><div class="flower" id="flower"></div></div>
+            <div class="card" id="card">
+              <canvas class="card-frame" id="cardFrame"></canvas>
+              <div class="card-in">
+                <span class="card-std">Save the Date</span>
+                <div class="card-names"><span class="cn1" data-t="n1"></span><span class="cn-et" data-t="et"></span><span class="cn2" data-t="n2"></span></div>
+                <div class="card-line"></div>
+                <div class="card-date" data-t="courte"></div>
+                <div class="card-promise" id="promise"></div>
+              </div>
+            </div>
+          </div>
+          <div class="lid" id="lid">
+            <div class="lid-face lid-front">
+              <canvas id="velvet"></canvas>
+              <div class="lid-mono"><div class="mono"></div><div class="lid-names"><span data-t="n1"></span> <em data-t="et"></em> <span data-t="n2"></span></div></div>
+            </div>
+            <div class="lid-face lid-back"><canvas id="quilt2"></canvas><div class="lid-emb"><span data-t="n1"></span> <em data-t="et"></em> <span data-t="n2"></span></div></div>
+          </div>
+          <button class="clasp" id="clasp" type="button" aria-label="Ouvrir"><canvas id="brooch"></canvas></button>
+        </div>
+        <div class="case-shadow"></div>
+      </div>
+      <div class="burst" id="burst"></div>
+      <p class="hint"><span data-t="toucher"></span></p>
+    </div>
+
+    <div class="bokeh" id="bokeh" aria-hidden="true"></div>
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+    <!-- ================= INVITATION ================= -->
+    <main class="invite" id="invite">
+      <section class="panel hero">
+        <div class="sheet"></div>
+        <canvas class="pframe"></canvas>
+        <canvas class="swags" id="swags"></canvas>
+        <div class="top-brooch"><canvas id="topBrooch"></canvas></div>
+        <div class="panel-content">
+          <div class="medal reveal"><canvas id="medal"></canvas><div class="mono"></div></div>
+          <p class="reveal bism" data-t="l1"></p>
+          <p class="reveal" data-t="l2"></p>
+          <h1 class="names reveal"><span data-t="n1"></span><em data-t="et"></em><span data-t="n2"></span></h1>
+          <div class="orn reveal"></div>
+          <p class="reveal" data-t="l3"></p>
+          <p class="reveal strong" data-t="l4"></p>
+          <p class="reveal" data-t="l5"></p>
+          <div class="reveal fleur" id="fleur"></div>
+          <p class="reveal soft" data-t="l6"></p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="sheet"></div>
+        <canvas class="pframe" data-top="3"></canvas>
+        <div class="panel-content">
+          <div class="tflower reveal"></div>
+          <h2 class="title reveal" data-t="compte"></h2>
+          <div class="countdown reveal" id="countdown"></div>
+          <div class="orn reveal"></div>
+          <h2 class="title reveal" data-t="programme"></h2>
+          <ol class="timeline" id="timeline"></ol>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="sheet"></div>
+        <canvas class="pframe" data-top="3"></canvas>
+        <div class="panel-content">
+          <div class="tflower reveal"></div>
+          <h2 class="title reveal" data-t="lieu"></h2>
+          <div class="orn reveal"></div>
+          <p class="reveal lieu-txt" data-t="lieuTexte"></p>
+          <div class="orn small reveal"></div>
+          <p class="reveal lieu-nom" data-t="lieuNom"></p>
+          <p class="reveal lieu-ville"><span id="pin"></span> <span data-t="ville"></span></p>
+          <div class="reveal photo"><canvas class="photo-frame"></canvas><img id="lieuImg" alt="" /></div>
+          <a class="pill reveal" id="maps" target="_blank" rel="noopener" data-t="itineraire"></a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="sheet"></div>
+        <canvas class="pframe" data-top="3"></canvas>
+        <div class="panel-content">
+          <div class="tflower reveal"></div>
+          <h2 class="title reveal" data-t="couleurs"></h2>
+          <div class="orn reveal"></div>
+          <p class="reveal soft dress-txt" data-t="couleursTexte"></p>
+          <div class="swatches" id="swatches"></div>
+          <div class="palette-bar reveal" id="paletteBar"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="sheet"></div>
+        <canvas class="pframe" data-top="3"></canvas>
+        <div class="panel-content">
+          <div class="tflower reveal"></div>
+          <h2 class="title reveal" data-t="mot"></h2>
+          <div class="orn reveal"></div>
+          <div class="quote reveal">
+            <span class="qmark">“</span>
+            <p class="verset" data-t="verset"></p>
+            <div class="orn small"></div>
+            <p class="mot-txt" data-t="motTexte"></p>
+            <span class="qmark end">”</span>
+          </div>
+          <p class="signature reveal"><span data-t="signature"></span></p>
+          <div class="reveal fleur-sign" id="fleur2"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="sheet"></div>
+        <canvas class="pframe" data-top="3"></canvas>
+        <div class="panel-content">
+          <div class="tflower reveal"></div>
+          <h2 class="title reveal" data-t="rsvp"></h2>
+          <div class="orn reveal"></div>
+          <p class="reveal soft" data-t="rsvpTexte"></p>
+          <form id="form" class="reveal form" novalidate>
+            <label class="lbl" for="f-nom" data-t="nom"></label>
+            <input id="f-nom" name="nom" type="text" data-ph="nomPh" autocomplete="name" />
+            <span class="lbl" data-t="present"></span>
+            <div class="radios">
+              <label><input type="radio" name="presence" value="oui" checked /> <span data-t="oui"></span></label>
+              <label><input type="radio" name="presence" value="non" /> <span data-t="non"></span></label>
+            </div>
+            <span class="lbl" data-t="nombre"></span>
+            <div class="stepper">
+              <button type="button" id="minus">−</button>
+              <input id="f-nb" name="nombre" type="number" min="1" max="20" value="1" readonly />
+              <button type="button" id="plus">+</button>
+            </div>
+            <label class="lbl" for="f-msg" data-t="message"></label>
+            <textarea id="f-msg" name="message" rows="3" data-ph="messagePh"></textarea>
+            <button type="button" class="ghost" id="vocal"><span id="micIco"></span> <span id="vocalTxt" data-t="vocal"></span></button>
+            <audio id="vocalPlay" controls hidden></audio>
+            <p class="err" id="err"></p>
+            <button type="submit" class="pill" data-t="envoyer"></button>
+          </form>
+          <p class="merci" id="merci" hidden data-t="merci"></p>
+          <div class="fin reveal">
+            <div class="orn"></div>
+            <p data-t="fin"></p>
+            <div class="mono small"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="chevron" id="chevron"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
